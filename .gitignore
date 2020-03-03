@@ -1,0 +1,25 @@
+# Here is comment.
+# ignore target folder
+#target/
+
+# ignore Eclipse files
+#.settings/
+#build/
+#.classpath
+#.project
+
+# don't ignore src folder
+#!src/
+
+# ignore scaffolds folder, but don't ignore draft.md under scaffolds folder.
+#scaffolds/*
+#!scaffolds/draft.md
+
+
+#*.log
+#day_1?.txt
+#hello[0-9].txt
+#hello[^0-9].txt
+
+
+__pycache__/

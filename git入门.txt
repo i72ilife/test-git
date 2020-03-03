@@ -1,0 +1,57 @@
+分布式版本控制系统git
+
+首先要配置一下
+git config --global user.name "YOUR NAME"
+git config --global user.email "YOUR EMAIL"
+
+We recommend every repository include a README, LICENSE, and .gitignore.
+
+
+本地仓库操作
+1.工作区操作
+git init 把当前目录变成git可以管理的仓库
+git add readme.txt 添加到暂存区
+git add . 所有文件添加到暂存区
+git commit -m 'comment' 把文件提交到仓库
+git checkout -- readme.txt 从版本库回退，也可使用 git reset --hard HEAD^
+
+git status 提交前后查看是否还有文件未提交
+git diff readme.txt 查看文件到底改了什么内容
+
+2.版本库操作
+git reset --hard HEAD~100 回退到前100个版本
+git reset --hard f9c90a2 版本号前6位
+
+git log --pretty=oneline 显示所有提交过的版本信息
+git reflog 查看所有分支的所有操作记录（包括已经被删除的 commit 记录和 reset 的操作）
+
+3.分支管理
+查看分支：git branch
+创建分支：git branch name
+切换分支：git checkout name
+创建+切换分支：git checkout –b name
+合并某分支到当前分支：git merge name
+删除分支：git branch –d name
+git stash 把当前工作现场 ”隐藏起来”，等以后恢复现场后继续工作
+git stash list来查看工作现场
+git stash apply 恢复现场，stash内容并不删除，需要使用命令git stash drop来删除
+git stash pop 恢复的同时把stash内容也删除了。
+
+分支策略：首先master主分支应该是非常稳定的，也就是用来发布新版本，一般情况下不允许在上面干活，干活一般情况下在新建的dev分支上干活，干完后，dev分支代码可以合并到主分支master上来。
+
+远程仓库
+第一步：创建SSH KEY：ssh-keygen -t rsa –C “youremail@example.com”
+第二步：登录github,settings->SSH Keys->Add SSH Key->填上任意title，在Key文本框里黏贴id_rsa.pub文件的内容->add
+第三步：create a new repo创建一个新的仓库test-git
+第四步：
+    git remote add origin https://github.com/i72ilife/test-git.git
+    git push -u origin master 把当前分支master推送到远程，若当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机
+    git push origin master
+    git clone https://github.com/jjleee/gittest.git可以从远程仓库克隆到本地。
+
+git push <远程主机名> <本地分支名>:<远程分支名>
+git pull == git fetch + git merge
+
+要查看远程库的信息 使用 git remote
+要查看远程库的详细信息 使用 git remote –v
+
